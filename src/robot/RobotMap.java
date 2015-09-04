@@ -55,11 +55,11 @@ public interface RobotMap {
 	/**
 	 * Pneumatics (!!!)
 	 */
-	public static int kTopGrabberA = 6;
-	public static int kTopGrabberB = 7;
+	public static int kTopGrabberA = 2;
+	public static int kTopGrabberB = 3;
 	
-	public static int kBottomGrabberA = 2;
-	public static int kBottomGrabberB = 3;
+	public static int kBottomGrabberA = 6;
+	public static int kBottomGrabberB = 7;
 	
 	public static int kShifterA = 4;
 	public static int kShifterB = 5;

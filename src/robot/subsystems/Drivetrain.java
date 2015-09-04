@@ -66,8 +66,8 @@ public class Drivetrain extends Subsystem implements RobotMap {
 			rT = rT / maxV;
 		}
 
-		left.set(lT);
-		right.set(rT);
+		left.set(lT * 0.5);
+		right.set(rT * 0.5);
 		SmartDashboard.putNumber("left distance while driving", lEncoder.getDistance());
 		SmartDashboard.putNumber("right distance while driving", rEncoder.getDistance());
 	}

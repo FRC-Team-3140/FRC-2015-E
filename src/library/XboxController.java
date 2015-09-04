@@ -47,8 +47,8 @@ public class XboxController extends Joystick{
 		start = new JoystickButton(this, 8);
 		leftJoystickButton = new JoystickButton(this, 9);
 		rightJoystickButton = new JoystickButton(this, 10);
-		leftTrigger = new JoystickAnalogButton(this, 3, 0.5);
-		rightTrigger = new JoystickAnalogButton(this, 3, -0.5);
+		leftTrigger = new JoystickAnalogButton(this, 2, 0.5);
+		rightTrigger = new JoystickAnalogButton(this, 3, 0.5);
 		
 		dPad = new HatSwitch(this);
 		dUp = dPad.UP;
@@ -66,7 +66,7 @@ public class XboxController extends Joystick{
 	 * @return The smoothen value of the left-thumbstick's X-axis.
 	 */
 	public double getLeftX() {
-		return Math.pow(super.getRawAxis(1), 3) * -1;
+		return Math.pow(super.getRawAxis(0), 3) * -1;
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class XboxController extends Joystick{
 	 * @return The smoothen value of the left-thumbstick's x-axis.
 	 */
 	public double getLeftY() {
-		return Math.pow(super.getRawAxis(2), 3);
+		return Math.pow(super.getRawAxis(1), 3);
 	}
 	
 	/**
