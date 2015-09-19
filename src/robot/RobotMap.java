@@ -11,6 +11,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public interface RobotMap {
 
 	/**
+	 * Constants
+	 */
+	public static double kThrottle = 0.7;
+	
+	/**
 	 * Joystick port(s)
 	 */
 	public static int kDriveStick = 0;
@@ -58,8 +63,8 @@ public interface RobotMap {
 	public static int kTopGrabberA = 2;
 	public static int kTopGrabberB = 3;
 	
-	public static int kBottomGrabberA = 6;
-	public static int kBottomGrabberB = 7;
+	public static int kBottomGrabberA = 7;
+	public static int kBottomGrabberB = 6;
 	
 	public static int kShifterA = 4;
 	public static int kShifterB = 5;
