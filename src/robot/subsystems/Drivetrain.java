@@ -1,5 +1,6 @@
 package robot.subsystems;
 
+import library.gyro.AnalogGyro;
 import robot.OI;
 import robot.RobotMap;
 import robot.commands.ArcadeDrive;
@@ -19,6 +20,7 @@ public class Drivetrain extends Subsystem implements RobotMap {
 	public static Drivetrain instance;
 	protected Talon left, right;
 	protected Encoder lEncoder, rEncoder;
+	protected AnalogGyro gyro;
 	private final PowerDistributionPanel pdp;
 	private double maxV, lT, rT;
 	public PID lP, rP;
@@ -28,6 +30,7 @@ public class Drivetrain extends Subsystem implements RobotMap {
 		pdp = new PowerDistributionPanel();
 		left = new Talon(kLeftDriveMotorPWM);
 		right = new Talon(kRightDriveMotorPWM);
+		gyro = new AnalogGyro(1);
 		lEncoder = new Encoder(kLeftDriveEncoderA, kLeftDriveEncoderB, false, EncodingType.k1X);
 		lEncoder.setDistancePerPulse(kDistancePerPulse);
 		lEncoder.reset();
@@ -68,8 +71,7 @@ public class Drivetrain extends Subsystem implements RobotMap {
 
 		left.set(lT * kThrottle);
 		right.set(rT * kThrottle);
-		SmartDashboard.putNumber("left distance while driving", lEncoder.getDistance());
-		SmartDashboard.putNumber("right distance while driving", rEncoder.getDistance());
+		SmartDashboard.putNumber("angle", gyro.getAngle());
 	}
 	
 	public void DriveForward(double s, double distance) {
