@@ -34,8 +34,8 @@ public class OI implements RobotMap {
 		xbox.a.whenPressed(new Lifter(0.8));
 		xbox.a.whenReleased(new Lifter(0.0));
 		
-		xbox.leftBumper.whenPressed(new Grab());
-		xbox.rightBumper.whenPressed(new Release());
+		xbox.leftBumper.whenPressed(new Release());
+		xbox.rightBumper.whenPressed(new Grab());
 		
 		/*
 		 * grab.whenPressed(new TopGrab()); leggo.whenPressed(new TopRelease());

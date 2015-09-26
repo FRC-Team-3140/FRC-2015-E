@@ -39,7 +39,12 @@ public class Robot extends IterativeRobot {
     	
     	oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new SimpleAuto();
+        try {
+			autonomousCommand = new SimpleAuto();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	public void disabledPeriodic() {

@@ -43,6 +43,7 @@ public class WinchLifter extends Subsystem implements RobotMap {
 		do {
 			cTime = System.currentTimeMillis();
 		} while (cTime - iTime <= time);
+		this.winchLifter(0);
 	}
 
 	

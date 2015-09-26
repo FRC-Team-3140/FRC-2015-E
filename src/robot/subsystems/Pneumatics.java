@@ -58,11 +58,11 @@ public class Pneumatics extends Subsystem implements RobotMap {
     }
     
     public void bottomOpen() {
-    	bottom.set(EXT);
+    	bottom.set(RET);
     }
     
     public void bottomClose() {
-    	bottom.set(RET);
+    	bottom.set(EXT);
     }
 }
 

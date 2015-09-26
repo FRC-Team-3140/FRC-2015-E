@@ -41,6 +41,7 @@ public class Drivetrain extends Subsystem implements RobotMap {
 		rP = new PID("Right", right, rEncoder);
 		lP.setAbsoluteTolerance(1.0);
 		rP.setAbsoluteTolerance(1.0);
+		reset();
 	}
 
 	/**
@@ -87,19 +88,16 @@ public class Drivetrain extends Subsystem implements RobotMap {
 		reset();
 	}
 	
-	public void RotateFrame(int angle, boolean barOnRight){
-		reset();
-		if(barOnRight){
-			while(gyro.getAngle() > angle){
-				left.set(-0.5);
-				right.set(-0.5);
-			}
-		}else{
-			while(gyro.getAngle() < angle){
-				left.set(0.5);
-				right.set(0.5);
-			}
-		}
+	public void rotateFrame(double speed, double time) {
+		double cTime;
+		double iTime = System.currentTimeMillis();
+		left.set(speed);
+		right.set(speed);
+		do {
+			cTime = System.currentTimeMillis();
+		} while (cTime - iTime <= time);
+		left.set(0);
+		right.set(0);
 	}
 
 	public void logPower() {

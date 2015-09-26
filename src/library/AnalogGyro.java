@@ -41,7 +41,7 @@ public class AnalogGyro extends Gyro {
   }
   
   public double getAngle() {
-    return Math.round(super.getAngle());
+    return Math.round( (super.getAngle() * 4));
   }
   
   public double getRate() {

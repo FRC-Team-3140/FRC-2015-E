@@ -2,6 +2,7 @@ package robot.commands;
 
 import robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Grab extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putBoolean("Was called", true);
     	Robot.air.bottomClose();
     }
 
