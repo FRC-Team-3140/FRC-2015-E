@@ -6,9 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class BottomRelease extends Command {
-
-    public BottomRelease() {
+public class Grab extends Command {
+	
+	
+    public Grab() {
     	requires(Robot.air);
     }
 
@@ -18,7 +19,7 @@ public class BottomRelease extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.air.bottomOpen();
+    	Robot.air.bottomClose();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,12 +1,8 @@
 package robot;
 
-import robot.commands.BottomGrab;
-import robot.commands.BottomRelease;
-import robot.commands.TopGrab;
+import robot.commands.Grab;
+import robot.commands.Release;
 import robot.commands.Lifter;
-import robot.commands.TopRelease;
-import robot.commands.auto.AutoLifter;
-import robot.commands.groups.GrabAndLift;
 import library.SmartJoystick;
 import library.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -38,11 +34,9 @@ public class OI implements RobotMap {
 		xbox.a.whenPressed(new Lifter(0.8));
 		xbox.a.whenReleased(new Lifter(0.0));
 		
-		xbox.leftBumper.whenPressed(new BottomGrab());
-		xbox.rightBumper.whenPressed(new BottomRelease());
-		xbox.leftTrigger.whenPressed(new TopGrab());
-		xbox.rightTrigger.whenPressed(new TopRelease());
-
+		xbox.leftBumper.whenPressed(new Grab());
+		xbox.rightBumper.whenPressed(new Release());
+		
 		/*
 		 * grab.whenPressed(new TopGrab()); leggo.whenPressed(new TopRelease());
 		 * up1.whenPressed(new Lifter(-0.8)); up2.whenPressed(new Lifter(-0.8));

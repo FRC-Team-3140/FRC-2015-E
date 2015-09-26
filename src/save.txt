@@ -1,0 +1,65 @@
+/******************************************************************
+	 * Used with drive commands When all encoders have reached the set distance,
+	 * it returns true Important for the isFinished() method in commands
+	 ******************************************************************/
+	public boolean itDone() {
+		return (rP.finished() && lP.finished());
+	}
+
+	/******************************************************************
+     * Enables the PID Subsystem again
+     * -When enabled, the system moves the wheels to desired setpoint
+     * -If always on, the system constantly tries to move to desired
+     *  spot, leading to jittering of the wheels
+     *  @throws NullPointerException
+     ******************************************************************/
+	public void reset() {
+		lP.reInit();
+		rP.reInit();
+	}
+
+	public void enable() {
+		lP.enable();
+		rP.enable();
+	}
+
+	public void startTime() {
+		System.out.println("timer started");
+		timer.start();
+		timer.reset();
+	}
+
+	public boolean waitForComplete(double milli) {
+		System.out.println("time currently: " + timer.get()
+				+ " - waiting for: " + milli);
+		if (timer.get() <= milli)
+			return false;
+		else {
+			return true;
+		}
+	}
+
+	public void initDefaultCommand() {
+		setDefaultCommand(new ArcadeDrive());
+	}
+
+	/******************************************************************
+	 * The following methods are used in movement commands.
+	 * -setSetpoint(distance) informs the PIDSubystem how far it needs to move
+	 * -negated values are to change direction of motor spin
+	 ******************************************************************/
+	public void drive(double distance) {
+		lP.setSetpoint(distance);
+		rP.setSetpoint(-1 * distance);
+	}
+
+	public void rotate(boolean half, int direction) {
+		if (half) {
+			lP.setSetpoint(kLeft180 * direction);
+			rP.setSetpoint(kRight180 * direction);
+
+		} else {
+			lP.setSetpoint((kLeft180 / 2) * direction);
+			rP.setSetpoint((kRight180 / 2) * direction);
+		}
+	}

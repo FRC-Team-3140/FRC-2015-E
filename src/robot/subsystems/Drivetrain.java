@@ -1,6 +1,6 @@
 package robot.subsystems;
 
-import library.gyro.AnalogGyro;
+import library.AnalogGyro;
 import robot.OI;
 import robot.RobotMap;
 import robot.commands.ArcadeDrive;
@@ -87,16 +87,19 @@ public class Drivetrain extends Subsystem implements RobotMap {
 		reset();
 	}
 	
-	public void RotateFrame(double s, double distance, double dir) {
+	public void RotateFrame(int angle, boolean barOnRight){
 		reset();
-		left.set(dir * s);
-		right.set(dir * s);
-		do {
-			SmartDashboard.putNumber("left distance", lEncoder.getDistance());
-			SmartDashboard.putNumber("right distance", rEncoder.getDistance());
-		}while (rEncoder.getDistance() <= distance);
-		left.set(0);
-		right.set(0);
+		if(barOnRight){
+			while(gyro.getAngle() > angle){
+				left.set(-0.5);
+				right.set(-0.5);
+			}
+		}else{
+			while(gyro.getAngle() < angle){
+				left.set(0.5);
+				right.set(0.5);
+			}
+		}
 	}
 
 	public void logPower() {
@@ -109,70 +112,19 @@ public class Drivetrain extends Subsystem implements RobotMap {
 		SmartDashboard.putNumber("Right Power #2: ",
 				pdp.getCurrent(kLeftDriveMotorPDP2));
 	}
-
-	/******************************************************************
-	 * Used with drive commands When all encoders have reached the set distance,
-	 * it returns true Important for the isFinished() method in commands
-	 ******************************************************************/
-	public boolean itDone() {
-		return (rP.finished() && lP.finished());
+	/**
+	 * Methods that handle the sensors, such as initialization,
+	 * reseting, etc...
+	 */
+	public void reset( ){
+		gyro.reset();
+		lEncoder.reset();
+		rEncoder.reset();
 	}
 
-	/******************************************************************
-     * Enables the PID Subsystem again
-     * -When enabled, the system moves the wheels to desired setpoint
-     * -If always on, the system constantly tries to move to desired
-     *  spot, leading to jittering of the wheels
-     *  @throws NullPointerException
-     ******************************************************************/
-	public void reset() {
-		lP.reInit();
-		rP.reInit();
-	}
-
-	public void enable() {
-		lP.enable();
-		rP.enable();
-	}
-
-	public void startTime() {
-		System.out.println("timer started");
-		timer.start();
-		timer.reset();
-	}
-
-	public boolean waitForComplete(double milli) {
-		System.out.println("time currently: " + timer.get()
-				+ " - waiting for: " + milli);
-		if (timer.get() <= milli)
-			return false;
-		else {
-			return true;
-		}
-	}
-
-	public void initDefaultCommand() {
-		setDefaultCommand(new ArcadeDrive());
-	}
-
-	/******************************************************************
-	 * The following methods are used in movement commands.
-	 * -setSetpoint(distance) informs the PIDSubystem how far it needs to move
-	 * -negated values are to change direction of motor spin
-	 ******************************************************************/
-	public void drive(double distance) {
-		lP.setSetpoint(distance);
-		rP.setSetpoint(-1 * distance);
-	}
-
-	public void rotate(boolean half, int direction) {
-		if (half) {
-			lP.setSetpoint(kLeft180 * direction);
-			rP.setSetpoint(kRight180 * direction);
-
-		} else {
-			lP.setSetpoint((kLeft180 / 2) * direction);
-			rP.setSetpoint((kRight180 / 2) * direction);
-		}
+	@Override
+	protected void initDefaultCommand() {
+	      setDefaultCommand(new ArcadeDrive());
+		
 	}
 }

@@ -1,4 +1,4 @@
-package robot.commands;
+package robot.commands.auto;
 
 import robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -6,26 +6,29 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PauseDrive extends Command {
+public class LiftFor extends Command {
 
+	double speed;
 	double time;
 	
-    public PauseDrive(double milli) {
-    	requires(Robot.dt);
+    public LiftFor(double speed, double time) {
+    	requires(Robot.lift);
+    	this.speed = speed;
+    	this.time = time;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.dt.startTime();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.lift.moveTo(speed, time);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.dt.waitForComplete(time);
+        return false;
     }
 
     // Called once after isFinished returns true

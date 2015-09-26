@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TopRelease extends Command {
+public class Release extends Command {
 
-    public TopRelease() {
+    public Release() {
     	requires(Robot.air);
     }
 
@@ -18,7 +18,7 @@ public class TopRelease extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.air.topOpen();
+    	Robot.air.bottomOpen();
     }
 
     // Make this return true when this Command no longer needs to run execute()

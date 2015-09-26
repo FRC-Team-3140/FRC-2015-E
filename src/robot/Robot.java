@@ -1,9 +1,8 @@
 
 package robot;
 
-import robot.commands.DriveForward;
-import robot.commands.groups.Autonomous1;
-import robot.commands.groups.GrabAndLift;
+import robot.commands.auto.DriveForward;
+import robot.commands.groups.SimpleAuto;
 import robot.subsystems.Drivetrain;
 import robot.subsystems.Pneumatics;
 import robot.subsystems.WinchLifter;
@@ -40,7 +39,7 @@ public class Robot extends IterativeRobot {
     	
     	oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new Autonomous1();
+        autonomousCommand = new SimpleAuto();
     }
 	
 	public void disabledPeriodic() {

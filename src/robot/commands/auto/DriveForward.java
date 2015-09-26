@@ -1,4 +1,4 @@
-package robot.commands;
+package robot.commands.auto;
 
 import robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -6,16 +6,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RotateFrame extends Command {
+public class DriveForward extends Command {
+
 	double speed;
 	double distance;
-	double direction;
-	
-    public RotateFrame(double s, double dist, double dir) {
+
+    public DriveForward(double speed, double distance) {
     	requires(Robot.dt);
-    	this.speed = s;
-    	this.distance = dist;
-    	this.direction = dir;
+    	this.speed = speed;
+    	this.distance = distance;
     }
 
     // Called just before this Command runs the first time
@@ -24,12 +23,12 @@ public class RotateFrame extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.dt.RotateFrame(speed, distance, direction);
+    	Robot.dt.DriveForward(speed, distance);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

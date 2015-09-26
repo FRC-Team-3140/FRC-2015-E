@@ -1,4 +1,4 @@
-package library.gyro;
+package library;
 
 import edu.wpi.first.wpilibj.Gyro;
 /**
