@@ -66,7 +66,7 @@ public class XboxController extends Joystick{
 	 * @return The smoothen value of the left-thumbstick's X-axis.
 	 */
 	public double getLeftX() {
-		return Math.pow(super.getRawAxis(0), 3) * -1;
+		return Math.signum(super.getRawAxis(0))*  Math.abs(Math.pow(super.getRawAxis(0), 3)) * -0.9 ;
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class XboxController extends Joystick{
 	 * @return The smoothen value of the left-thumbstick's x-axis.
 	 */
 	public double getLeftY() {
-		return Math.pow(super.getRawAxis(1), 3);
+		return Math.signum(super.getRawAxis(1)) * Math.abs(Math.pow(super.getRawAxis(1), 3) * 0.9);
 	}
 	
 	/**

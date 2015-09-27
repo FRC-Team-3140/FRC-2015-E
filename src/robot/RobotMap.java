@@ -38,8 +38,8 @@ public interface RobotMap {
 	 * Motors (!!!)
 	 */
 	public static int kLeftDriveMotorPWM = 1;
-	public static int kLeftDriveMotorPDP1 = 14;
-	public static int kLeftDriveMotorPDP2 = 15;
+	public static int kLeftDriveMotorPDP1 = 13;
+	public static int kLeftDriveMotorPDP2 = 12;
 	
 	public static int kRightDriveMotorPWM = 0;
 	public static int kRightDriveMotorPDP1 = 0;

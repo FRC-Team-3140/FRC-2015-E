@@ -20,7 +20,7 @@ public class SimpleAuto extends CommandGroup {
     	addSequential(new DriveForward(0.5, 30));
     	addSequential(new LiftFor(0.8, 100));
     	//Positive = turns left, negative = turns right (EX: 0.5 = turns left at 0.5)
-    	addSequential(new RotateFrame(0.5, 2000));
+    	addSequential(new RotateFrame(0.5, 1000));
     	addSequential(new DriveForward(0.5, 72));
     	
     }

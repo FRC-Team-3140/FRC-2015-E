@@ -60,8 +60,9 @@ public class Drivetrain extends Subsystem implements RobotMap {
 	}
 
 	public void arcadeDrive() {
-		lT = OI.getDriveStick().getLeftX() - OI.getDriveStick().getLeftY();
+		lT = 1*(OI.getDriveStick().getLeftX() - OI.getDriveStick().getLeftY());
 		rT = OI.getDriveStick().getLeftX() + OI.getDriveStick().getLeftY();
+		
 
 		//maxV = Math.max(Math.abs(lT), Math.abs(rT));
 
@@ -73,6 +74,7 @@ public class Drivetrain extends Subsystem implements RobotMap {
 		left.set(lT * kThrottle);
 		right.set(rT * kThrottle);
 		SmartDashboard.putNumber("angle", gyro.getAngle());
+		//logPower();
 	}
 	
 	public void DriveForward(double s, double distance) {
@@ -108,7 +110,7 @@ public class Drivetrain extends Subsystem implements RobotMap {
 		SmartDashboard.putNumber("Right Power #1: ",
 				pdp.getCurrent(kRightDriveMotorPDP1));
 		SmartDashboard.putNumber("Right Power #2: ",
-				pdp.getCurrent(kLeftDriveMotorPDP2));
+				pdp.getCurrent(kRightDriveMotorPDP2));
 	}
 	/**
 	 * Methods that handle the sensors, such as initialization,
